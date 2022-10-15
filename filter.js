@@ -51,6 +51,13 @@ function getBasket(url) {
         brands: brands
     }));
 
+    // get response
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+        }
+    }
+
 }
 
 getBasket("https://www.auchan.fr/checkout/cart/");
@@ -61,6 +68,13 @@ var xhr = new XMLHttpRequest();
 xhr.open("POST", "http://localhost:8000/products", true);
 xhr.setRequestHeader('Content-Type', 'application/json');
 xhr.send(JSON.stringify({ urls: url_products }));
+
+// get response
+xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        console.log(this.responseText);
+    }
+}
 
 // recup response : 88 / 100
 var list_res = [18, 88, 100, 50, 37];
