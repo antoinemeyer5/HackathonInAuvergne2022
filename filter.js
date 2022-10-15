@@ -63,8 +63,14 @@ xhr.setRequestHeader('Content-Type', 'application/json');
 xhr.send(JSON.stringify({ urls: url_products }));
 
 // recup response : 88 / 100
-var list_res = [18, 88, 100, 50, 37];
-var score = 54;
+// var list_res = [18, 88, 100, 50, 37];
+// var score = 54;
+
+function entierAleatoire(min, max)
+{
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 
 // modify dom page for display our score
 let list_product_to_modify = document.getElementsByClassName("product-thumbnail__header");
@@ -73,7 +79,7 @@ let list_product_to_modify = document.getElementsByClassName("product-thumbnail_
 for (let i = 0; i < list_product_to_modify.length; i++) {
     // new element
     let p = document.createElement("p");
-    p.append("Ethic'score : 4/10");
+    p.append("Ethic'score : " + entierAleatoire(0, 10) + "/10");
     p.style.backgroundColor = "red";
     list_product_to_modify.item(i).append(p);
     
