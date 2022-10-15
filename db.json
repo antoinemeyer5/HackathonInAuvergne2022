@@ -1,0 +1,40 @@
+{
+    "products": [
+        {
+            "code": "00000000000000225",
+            "countries": "en:france"
+        },
+        {
+            "code": "0000000000000207025004",
+            "countries": "en:de"
+        },
+        {
+            "code": "00000000000003429145",
+            "countries": "Spain"
+        },
+        {
+            "code": "00000000000026772226",
+            "countries": "France"
+        },
+        {
+            "code": "0000000000017",
+            "countries": "France"
+        },
+        {
+            "code": "0000000000031",
+            "countries": "France"
+        },
+        {
+            "code": "000000000003327986",
+            "countries": "Espagne"
+        },
+        {
+            "code": "000000000004128579",
+            "countries": "en:es"
+        },
+        {
+            "code": "000000000004622327",
+            "countries": "en:es"
+        }
+    ]
+}
