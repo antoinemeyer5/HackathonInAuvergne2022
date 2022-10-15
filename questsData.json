@@ -1,11 +1,13 @@
 {
     "quests": [
         {
+            "id": 0,
             "name": "Local Quest",
             "description": "Achète 5 produits locaux",
             "rewards": 100
         },
         {
+            "id": 1,
             "name": "Ethic Quest",
             "description": "Achète 5 produits éthiques",
             "rewards": 50
