@@ -113,33 +113,41 @@ function getScores(barcodes){
     let scores = [];
     for (let i = 0; i < barcodes.length; i++){
         const product = db.products.find(product => product.code == barcodes[i]);
-        let score = 0;
 
-        console.log(product);
+        if (product){
 
-        // fill product information
-        let fairness = 10; //(product.fairness == "true") ? 10 : 0;
-        let origin = getOriginScore(product.coutries);
-        let nutriscore = getNutriscoreScore(product.nutriscore_grade);
-        let recyclability = getNutriscoreScore(product.ecoscore_grade);
-        let bio = getBioScore(product.label);
+            let score = 0;
+
+            console.log(product);
+
+            // fill product information
+            let fairness = 10; //(product.fairness == "true") ? 10 : 0;
+            let origin = getOriginScore(product.coutries);
+            let nutriscore = getNutriscoreScore(product.nutriscore_grade);
+            let recyclability = getNutriscoreScore(product.ecoscore_grade);
+            let bio = getBioScore(product.label);
 
 
-        // EE stands for "Ethique Environnementale"
-        let coeff_EE = 0.4;
-        let EE = (origin + recyclability + bio)/3;
+            // EE stands for "Ethique Environnementale"
+            let coeff_EE = 0.4;
+            let EE = (origin + recyclability + bio)/3;
 
-        // EC stands for "Ethique Corps"
-        let coeff_EC = 0.2;
-        let EC = nutriscore;
+            // EC stands for "Ethique Corps"
+            let coeff_EC = 0.2;
+            let EC = nutriscore;
 
-        // EP stands for "Ethique Production"
-        let coeff_EP = 0.4;
-        let EP = fairness;
+            // EP stands for "Ethique Production"
+            let coeff_EP = 0.4;
+            let EP = fairness;
 
-        score = coeff_EE*EE + coeff_EC*EC + coeff_EP*EP;
+            score = coeff_EE*EE + coeff_EC*EC + coeff_EP*EP;
 
-        scores.push(score);
+            scores.push(score);
+        }
+        else {
+            scores.push(0);
+        }
+
     }
     return scores;
 }
@@ -159,5 +167,37 @@ app.post('/products', (req, res) => {
     const scores = getScores(barcodes);
     console.log(scores);
     
-    res.json({scores: scores});
+    // write scores to scores.json
+    fs.writeFileSync('scores.json', JSON.stringify(scores));
+    console.log(scores);
+    res.json("scores saved successfully");
 });
+
+
+app.post('/basket', (req, res) => {
+    // get request body
+    console.log("Resquesting basket");
+    const body = req.body;
+    console.log(body);
+    // write to basket.json
+    fs.writeFileSync('basket.json', JSON.stringify(body));
+    console.log(body);
+    res.send("basket saved successfully");
+}
+);
+
+app.get('/basket', (req, res) => {
+    // get basket
+    const basket = fs.readFileSync('basket.json', 'utf8');
+    console.log(basket);
+    res.send(basket);
+}
+);
+
+app.get('/scores', (req, res) => {
+    // get scores
+    const scores = fs.readFileSync('scores.json', 'utf8');
+    console.log(scores);
+    res.send(scores);
+}
+);

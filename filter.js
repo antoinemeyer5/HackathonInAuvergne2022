@@ -25,11 +25,14 @@ function getBasket(url) {
     const items_prices = document.getElementsByClassName("cart-item__price");
     const items_brand = document.getElementsByClassName("cart-item__brand");
 
+
     // get prices
     const prices = [];
     for (let i = 0; i < items_prices.length; i++) {
         prices.push(items_prices.item(i).textContent);
     }
+
+    console.log(prices);
 
     // get brands
     const brands = [];
