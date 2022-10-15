@@ -40,7 +40,6 @@ app.get('/products/:id', (req, res) => {
 }
 );
 
-
 app.get('/quests/:id', (req, res) => {
     // get id
     const id = req.params.id;
@@ -52,7 +51,7 @@ app.get('/quests/:id', (req, res) => {
 }
 );
 
-app.get('/products', (req, res) => {
+app.post('/products', (req, res) => {
     // get request body
     console.log("Resquesting all products");
     const body = req.body;
