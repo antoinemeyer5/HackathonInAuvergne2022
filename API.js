@@ -1,7 +1,11 @@
 const { json } = require('express');
 const express = require('express');
 
+const getBarcode = require('./getBarcode');
+
 const app = express();
+
+app.use(express.json());
 
 app.listen(8000, () => {
     console.log('Listening on port 8000');
@@ -47,3 +51,18 @@ app.get('/quests/:id', (req, res) => {
     res.send(quest);
 }
 );
+
+app.get('/products', (req, res) => {
+    // get request body
+    console.log("Resquesting all products");
+    const body = req.body;
+    // get all urls from body
+    const barcodes = []; 
+    body.urls.forEach(url => {
+        barcodes.push(getBarcode(url));
+    });
+
+    console.log(barcodes)
+    
+    res.json({barcodes: barcodes});
+});

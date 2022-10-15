@@ -17,6 +17,7 @@ function getBarcode(url) {
     const barcodes = dom.getElementsByClassName("product-description__feature-wrapper");
     const barcode = barcodes[barcodes.length - 1].textContent.split("/");
     console.log(parseInt(barcode[2]));
+    return parseInt(barcode[2]);
 }
 
 module.exports = getBarcode;
