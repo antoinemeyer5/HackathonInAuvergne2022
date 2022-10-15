@@ -13,12 +13,11 @@ console.log(url_products);
 
 // scrap data from https://www.auchan.fr/checkout/cart/
 
-function getSourceAsDOM(url)
-{
-    xmlhttp=new XMLHttpRequest();
-    xmlhttp.open("GET",url,false);
+function getSourceAsDOM(url) {
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", url, false);
     xmlhttp.send();
-    return xmlhttp.responseText;     
+    return xmlhttp.responseText;
 }
 
 function getBasket(url) {
@@ -38,7 +37,7 @@ function getBasket(url) {
         brands.push(items_brand.item(i).textContent);
     }
 
-    for(let i = 0; i < items_prices.length; i++){
+    for (let i = 0; i < items_prices.length; i++) {
         console.log(prices[i], brands[i]);
     }
 
@@ -52,7 +51,7 @@ function getBasket(url) {
     }));
 
     // get response
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             console.log(this.responseText);
         }
@@ -70,15 +69,20 @@ xhr.setRequestHeader('Content-Type', 'application/json');
 xhr.send(JSON.stringify({ urls: url_products }));
 
 // get response
-xhr.onreadystatechange = function() {
+xhr.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         console.log(this.responseText);
     }
 }
 
 // recup response : 88 / 100
-var list_res = [18, 88, 100, 50, 37];
-var score = 54;
+// var list_res = [18, 88, 100, 50, 37];
+// var score = 54;
+
+function entierAleatoire(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 
 // modify dom page for display our score
 let list_product_to_modify = document.getElementsByClassName("product-thumbnail__header");
@@ -87,10 +91,25 @@ let list_product_to_modify = document.getElementsByClassName("product-thumbnail_
 for (let i = 0; i < list_product_to_modify.length; i++) {
     // new element
     let p = document.createElement("p");
-    p.append("Ethic'score : 4/10");
-    p.style.backgroundColor = "red";
+    let this_score = entierAleatoire(0, 10);
+    p.append("Ethic'score : " + this_score + "/10");
+    switch (parseInt(this_score)) {
+        case 10:
+        case 9:
+        case 8:
+            p.style.backgroundColor = "green";
+            break;
+        case 7:
+        case 6:
+        case 5:
+            p.style.backgroundColor = "orange";
+            break;
+        default:
+            p.style.backgroundColor = "red";
+            break;
+    }
     list_product_to_modify.item(i).append(p);
-    
+
     // adding padding 
     list_product_to_modify.item(i).style.padding = "10px 10px 10px 10px";
 }
