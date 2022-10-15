@@ -9,19 +9,77 @@
 </head>
 
 <body>
-    <template id="li_template">
-        <li>
-            <a>
-                <h3 class="title">Tab Title</h3>
-                <p class="pathname">Tab Pathname</p>
-            </a>
-        </li>
-    </template>
-
-    <h1>Ethic'quête</h1>
-    <button>La grande quête de l'étique alimentaire!</button>
-    <ul></ul>
-
+    <!---->
+    <div class="top-extension-bar">
+        <h1>Ethic'quête</h1>
+        <p>La grande quête de l'éthique alimentaire !</p>
+    </div>
+    <hr>
+    <!---->
+    <div class="extension-modules">
+        <!---->
+        <details class="filters-customers">
+            <summary>Vos filtres</summary>
+            <ul class="filters-customers-list">
+                <li>
+                    <label class="switch">
+                        <input type="checkbox" />
+                        <span>Masquer les produits ayant une provenance hors France</span>
+                    </label>
+                </li>
+                <li>
+                    <label class="switch">
+                        <input type="checkbox" />
+                        <span>Masquer les produits ayant un Ethic'score inférieur à 5</span>
+                    </label>
+                </li>
+                <li>
+                    <label class="switch">
+                        <input type="checkbox" />
+                        <span>Masquer les produits transformés</span>
+                    </label>
+                </li>
+            </ul>
+        </details>
+        <!--détails du panier-->
+        <details class="basket-details">
+            <summary>Détails du panier</summary>
+            <ul class="basket-details-list">
+                <li>
+                    <details>
+                        <summary>Produit 1</summary>
+                        <p>Pilier 1 : 🔴</p>
+                        <p>Pilier 2 : 🟢</p>
+                        <p>Pilier 3 : 🟡</p>
+                    </details>
+                </li>
+                <li>
+                    <details>
+                        <summary>Produit 2</summary>
+                        <p>Pilier 1 : 🔴</p>
+                        <p>Pilier 2 : 🟢</p>
+                        <p>Pilier 3 : 🟡</p>
+                    </details>
+                </li>
+                <li>
+                    <details>
+                        <summary>Produit 3</summary>
+                    </details>
+                </li>
+            </ul>
+        </details>
+        <!--quêtes du jour-->
+        <details>
+            <summary>Quêtes du jour</summary>
+            Lorem ipsum ...
+        </details>
+    </div>
+    <hr>
+    <!--score total-->
+    <div>
+        <p>Votre Ethic'score : XX points</p>
+    </div>
+    <!---->
     <script src="./background.js" type="module"></script>
 </body>
 
