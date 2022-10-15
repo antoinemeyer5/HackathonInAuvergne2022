@@ -24,9 +24,7 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     // send script
     chrome.scripting.executeScript({
         target: {tabId: tabs[0].id},
-        function: (url) => {
-            console.log("this is a test");
-        }
+        files: ['filter.js']
     });
     if (urls.includes(url)) {
         // change background color to red
