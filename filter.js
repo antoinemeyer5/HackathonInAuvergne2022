@@ -78,23 +78,29 @@ xhr.onreadystatechange = function () {
     }
 }
 
-// recup response : 88 / 100
-// var list_res = [18, 88, 100, 50, 37];
-// var score = 54;
-
-function entierAleatoire(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-
 // modify dom page for display our score
 let list_product_to_modify = document.getElementsByClassName("product-thumbnail__header");
 
-// 
+// récupère le panier 
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "http://localhost:8000/scores", true);
+xhr.setRequestHeader('Content-Type', 'application/json');
+xhr.send(null);
+// liste des bons prix calculés
+var response;
+xhr.onreadystatechange = function(){
+    if(this.readyState==4 && this.status == 200){
+        response = JSON.parse(this.responseText);
+        console.log(response);
+    }
+}
+
+// ajoute les prix calculés aux produits
 for (let i = 0; i < list_product_to_modify.length; i++) {
     // new element
     let p = document.createElement("p");
-    let this_score = entierAleatoire(0, 10);
+    let this_score = response[i];
+    console.log(this_score);
     p.append("Ethic'score : " + this_score + "/10");
     switch (parseInt(this_score)) {
         case 10:
@@ -122,10 +128,3 @@ const elems = document.querySelectorAll('.product-thumbnail__header');
 elems.forEach(elem => {
     elem.classList.remove('product-thumbnail__header');
 })
-
-
-
-
-
-// debug
-// console.log(url_products);
