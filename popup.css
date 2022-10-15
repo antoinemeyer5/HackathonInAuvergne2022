@@ -1,5 +1,9 @@
 body {
-    width: 20rem;
+    width: 30rem;
+}
+
+details {
+    margin-bottom: 1rem;
 }
 
 ul {
@@ -18,9 +22,4 @@ li:nth-child(odd) {
 
 li:nth-child(even) {
     background: #ffffff;
-}
-
-h3,
-p {
-    margin: 0;
 }
