@@ -13,12 +13,23 @@ var urlDivMap = {
 };
 
 
+function getDivClass(url) {
+    return console.log(urlDivMap[url]);
+}
+
+
 // function to get the url of the current tab
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     let url = tabs[0].url;
+    // send script
+    chrome.scripting.executeScript({
+        target: {tabId: tabs[0].id},
+        function: getDivClass
+    });
     if (urls.includes(url)) {
         // change background color to red
         document.body.style.backgroundColor = "red";
         console.log("This is a test");
+        console.log("url: " + url);
     }
 });
