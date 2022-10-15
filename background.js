@@ -11,7 +11,5 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             target: { tabId: tabs[0].id },
             files: ['filter.js']
         });
-        // change background color to red
-        // document.body.style.backgroundColor = "red";
     }
 });
