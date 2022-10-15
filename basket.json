@@ -1,1 +1,10 @@
-{"prices":["4,29 €","3,45 €"],"brands":["LE RUSTIQUE Tomme fruitée\n    ","HOLLAND MASTER Gouda vieux AOP\n    "]}
+{
+    "prices": [
+        "3,99 €",
+        "5,00 €"
+    ],
+    "brands": [
+        "FROMAGE A LA COUPE Fromage au lait de chèvre bio Filière Responsable\n    ",
+        "FROMAGE A LA COUPE ETOILE DU QUERCY Plateau de fromages\n    "
+    ]
+}
