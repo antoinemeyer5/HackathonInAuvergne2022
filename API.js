@@ -104,6 +104,10 @@ function getNutriscoreScore(nutriscore){
     return score;
 }
 
+function getBioScore(label){
+    return 5;
+}
+
 
 function getScores(barcodes){
     let scores = [];
@@ -111,14 +115,19 @@ function getScores(barcodes){
         const product = db.products.find(product => product.code == barcodes[i]);
         let score = 0;
 
+        console.log(product);
+
         // fill product information
-        let fairness = (product.fairness == "true") ? 10 : 0;
-        let origin = getOriginScore(product.country);
+        let fairness = 10; //(product.fairness == "true") ? 10 : 0;
+        let origin = getOriginScore(product.coutries);
         let nutriscore = getNutriscoreScore(product.nutriscore_grade);
+        let recyclability = getNutriscoreScore(product.ecoscore_grade);
+        let bio = getBioScore(product.label);
+
 
         // EE stands for "Ethique Environnementale"
         let coeff_EE = 0.4;
-        let EE = (origin + product.recyclability + product.bio)/3;
+        let EE = (origin + recyclability + bio)/3;
 
         // EC stands for "Ethique Corps"
         let coeff_EC = 0.2;
@@ -146,7 +155,9 @@ app.post('/products', (req, res) => {
         barcodes.push(getBarcode(url));
     });
 
-    console.log(barcodes)
+    // get scores
+    const scores = getScores(barcodes);
+    console.log(scores);
     
-    res.json({barcodes: barcodes});
+    res.json({scores: scores});
 });
