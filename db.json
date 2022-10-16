@@ -4,27 +4,27 @@
             "code": "3222110009958",
             "countries": "France",
             "nutriscore": "d",
-            "eco_score": "b",
+            "eco_score": "c",
             "fairness": true
         },
         {
             "code": "3613290000185",
             "countries": "France",
             "nutriscore": "d",
-            "eco_score": "b",
-            "fairness": true
+            "eco_score": "d",
+            "fairness": false
         },
         {
             "code": "3176580111546",
             "countries": "France",
             "nutriscore": "d",
-            "eco_score": "b",
-            "fairness": true
+            "eco_score": "c",
+            "fairness": false
         },
         {
             "code": "3550090074230",
             "countries": "France",
-            "nutriscore": "d",
+            "nutriscore": "b",
             "eco_score": "b",
             "fairness": true
         },
@@ -66,8 +66,8 @@
         {
             "code": "3073780817929",
             "countries": "France",
-            "nutriscore": "d",
-            "eco_score": "b",
+            "nutriscore": "e",
+            "eco_score": "c",
             "fairness": true
         },
         {
@@ -79,10 +79,10 @@
         },
         {
             "code": "3114270400334",
-            "countries": "France",
+            "countries": "Amerique",
             "nutriscore": "d",
-            "eco_score": "b",
-            "fairness": true
+            "eco_score": "d",
+            "fairness": false
         },
         {
             "code": "3228021170060",

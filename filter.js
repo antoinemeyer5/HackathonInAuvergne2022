@@ -4,7 +4,7 @@ async function getScores(){
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(null);
 
-    let scores = [4,8,5,6,2,5,7,6,5,4,8,5,6,2,5,7,6,5,4,7,6,5,4,8,5,4,6,4,7,8];
+    let scores = [5,3,4,9,5,6,6,4,5,4,8,5,6,2,5,7,6,5,4,7,6,5,4,8,5,4,6,4,7,8];
     xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var response = JSON.parse(this.responseText);
@@ -43,7 +43,6 @@ let scoresList = [];
         // new element
         let p = document.createElement("p");
         let this_score = scoresList[i];
-        console.log("this items score: " , parseInt(this_score));
         p.append("Ethic'score :  " + this_score + "/10");
         switch (parseInt(this_score)) {
             case 10:
@@ -63,7 +62,12 @@ let scoresList = [];
         list_product_to_modify.item(i).append(p);
     
         // adding padding 
-        list_product_to_modify.item(i).style.padding = "10px 10px 10px 10px";
+        list_product_to_modify.item(i).style.padding = "10%";
+        list_product_to_modify.item(i).style.textAlign = "center";
+        // width
+        list_product_to_modify.item(i).style.width = "50%";
+        list_product_to_modify.item(i).style.margin = "auto";
+
     }
     
     //

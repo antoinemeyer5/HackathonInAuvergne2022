@@ -1,5 +1,6 @@
 body {
     width: 30rem;
+    text-align: center;
 }
 
 details {
@@ -17,9 +18,11 @@ li {
 }
 
 li:nth-child(odd) {
-    background: #80808030;
+    background: #bababa30;
+    border-radius: 2%;
 }
 
 li:nth-child(even) {
     background: #ffffff;
+    border-radius: 2%;
 }
