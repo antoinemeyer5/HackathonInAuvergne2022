@@ -15,28 +15,29 @@ console.log(className);
 
 
 async function getScores(){
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost:8000/scores", true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(null);
+    // create a promise
+    return new Promise((resolve, reject) => {
+        // var xhr
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://localhost:8000/scores", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(null);
 
-    let scores = [5,3,4,9,5,6,6,4,5,4,8,5,6,2,5,7,6,5,4,7,6,5,4,8,5,4,6,4,7,8];
-    xhr.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            console.log(response);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                // resolve the promise with the response
+                resolve(JSON.parse(xhr.responseText));
+            }
         }
-    }
-    return scores;
-};
+    });
+}
 
-let scoresList = [];
 (async() => {
     console.log("before start");
 
-    scoresList = await getScores();
+    const scoresList = await getScores();
 
-    // console.log(scoresList.item(0));
+    console.log("this is the scores list", scoresList);
 
     var list_products = document.getElementsByClassName('product-thumbnail__details-wrapper');
     // result
@@ -46,13 +47,21 @@ let scoresList = [];
         //console.log(list_products.item(i).href);
         url_products.push(list_products.item(i).href);
     }
+
+    // var xhr = new XMLHttpRequest();
+    // xhr.open("POST", "http://localhost:8000/products", true);
+    // xhr.setRequestHeader('Content-Type', 'application/json');
+    // xhr.send(JSON.stringify({ urls: url_products }));
+
+    // // get response
+    // xhr.onreadystatechange = function () {
+    //     if (this.readyState == 4 && this.status == 200) {
+    //         console.log(this.responseText);
+    //     }
+    // }
     
-    // call Taha's API
     
-    // recup response : 88 / 100
-    var score = 54;
-    
-    // modify dom page for display our score
+    // modify dom page to display our score
     let list_product_to_modify = document.getElementsByClassName(className);
     console.log(list_product_to_modify);
     
@@ -60,7 +69,7 @@ let scoresList = [];
         // new element
         let p = document.createElement("p");
         let this_score = scoresList[i];
-        p.append("Ethic'score :  " + this_score + "/10");
+        p.append("Ethic'score :" + this_score);
         switch (parseInt(this_score)) {
             case 10:
             case 9:
@@ -76,13 +85,14 @@ let scoresList = [];
                 p.style.backgroundColor = "red";
                 break;
         }
+        p.style.color = "white";
         list_product_to_modify.item(i).append(p);
     
         // adding padding 
         list_product_to_modify.item(i).style.padding = "10%";
         list_product_to_modify.item(i).style.textAlign = "center";
         // width
-        list_product_to_modify.item(i).style.width = "50%";
+        list_product_to_modify.item(i).style.width = "80%";
         list_product_to_modify.item(i).style.margin = "auto";
 
     }
