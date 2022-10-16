@@ -1,6 +1,8 @@
 
 // Auchan url
 var url_auchan = "https://www.auchan.fr";
+var url_casinodrive = "https://www.casino.fr/ecommerce/";
+var url_carrefour = "https://www.carrefour.fr"
 
 console.log("before start");
 
@@ -63,7 +65,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         });
     }
 
-    if(url.indexOf(url_auchan)==0){
+    if(url.indexOf(url_auchan)==0 || url.indexOf(url_casinodrive)==0 || url.indexOf(url_carrefour)){
         // send script
         chrome.scripting.executeScript({
             target: { tabId: tabs[0].id },

@@ -1,3 +1,19 @@
+const urlMap = {
+    "https://www.auchan" : "product-thumbnail__header",
+    "https://www.casino.fr" : "product-item__top",
+    "https://www.carrefour.fr" : "main-vertical--top"
+}
+
+let className = "";
+// if url is in urlMap, contains one of the keys in urlMap
+if (Object.keys(urlMap).some(url => window.location.href.includes(url))) {
+    // get the value of the key that matches the url
+    className = urlMap[Object.keys(urlMap).find(url => window.location.href.includes(url))];
+}
+
+console.log(className);
+
+
 async function getScores(){
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "http://localhost:8000/scores", true);
@@ -37,7 +53,8 @@ let scoresList = [];
     var score = 54;
     
     // modify dom page for display our score
-    let list_product_to_modify = document.getElementsByClassName("product-thumbnail__header");
+    let list_product_to_modify = document.getElementsByClassName(className);
+    console.log(list_product_to_modify);
     
     for (let i = 0; i < list_product_to_modify.length; i++) {
         // new element
